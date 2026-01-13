@@ -15,18 +15,25 @@ This is a Apache Spark setup runing in a Docker Container for learning purposes.
 
 ## Spark Shell
 
-    docker run --rm -d --name spark-shell -p 4040:4040 -p 4041:4041 -p 18080:18080 \
-    -v $(pwd)/notebooks:/home/sparkuser/app -v $(pwd)/notebooks/event_logs:/home/spark/event_logs spark:latest spark-shell
+    docker run -it --entrypoint /bin/bash spark
+    spark-shell
 
-or
+Inside Shell:
 
-    docker-compose up -d spark-shell
+    :help
+    :type sc
+    :type spark
+
 
 ## PySpark
 
-    docker run --rm -d --name pyspark -p 4040:4040 -p 4041:4041 -p 18080:18080 \
-    -v $(pwd)/notebooks:/home/sparkuser/app -v $(pwd)/notebooks/event_logs:/home/spark/event_logs spark:latest pyspark
+    docker run -it -v $(pwd)/notebooks:/home/sparkuser/app --entrypoint /bin/bash spark
+    pyspark
 
-or
+Inside Python:
 
-    docker-compose up -d pyspark
+    textFile = spark.read.text("data.txt")
+    textFile.count()
+    textFile.first()
+    textFile.filter(textFile.value.contains("Spark")).count()
+

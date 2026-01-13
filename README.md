@@ -13,7 +13,7 @@ This is a Apache Spark setup runing in a Docker Container for learning purposes.
 
 or
 
-    docker-compose up jupyter
+    docker-compose up -d jupyter
 
 ## Spark Shell
 
@@ -22,7 +22,7 @@ or
 
 or
 
-    docker-compose up spark-shell
+    docker-compose up -d spark-shell
 
 ## PySpark
 
@@ -31,4 +31,4 @@ or
 
 or
 
-    docker-compose up pyspark
+    docker-compose up -d pyspark

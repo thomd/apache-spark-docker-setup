@@ -1,14 +1,14 @@
-FROM python:3.11-buster
+FROM python:3.11-bookworm
 
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ENV SPARK_HOME=/home/spark
 ENV PATH=$SPARK_HOME/bin:$PATH
 
-RUN apt-get update && apt-get install -y openjdk-11-jre-headless curl wget vim sudo whois ca-certificates-java \
+RUN apt-get update && apt-get install -y openjdk-17-jre-headless curl wget vim sudo whois ca-certificates-java \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget --verbose -O apache-spark.tgz "https://dlcdn.apache.org/spark/spark-3.5.2/spark-3.5.2-bin-hadoop3.tgz" \
+RUN wget -O apache-spark.tgz "https://dlcdn.apache.org/spark/spark-3.5.7/spark-3.5.7-bin-hadoop3.tgz" \
     && mkdir -p /home/spark \
     && tar -xf apache-spark.tgz -C /home/spark --strip-components=1 \
     && rm apache-spark.tgz
